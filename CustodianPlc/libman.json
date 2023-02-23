@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+	"libraries": [
+		{
+			"library": "gijgo@1.9.14",
+			"destination": "wwwroot/lib/gijgo/"
+		},
+		{
+			"library": "sweetalert2@11.7.1",
+			"destination": "wwwroot/lib/sweetalert2/"
+		},
+		{
+			"library": "font-awesome@6.3.0",
+			"destination": "wwwroot/lib/font-awesome/"
+		},
+		{
+			"library": "ionicons@6.1.2",
+			"destination": "wwwroot/lib/ionicons/"
+		},
+		{
+			"provider": "cdnjs",
+			"library": "tether@1.4.7",
+			"destination": "wwwroot/lib/tether/"
+		},
+		{
+			"provider": "cdnjs",
+			"library": "bootstrap@5.2.3",
+			"destination": "wwwroot/lib/bootstrap/"
+		},
+		{
+			"provider": "jsdelivr",
+			"library": "cubeportfolio@1.0.0",
+			"destination": "wwwroot/lib/cubeportfolio/"
+		},
+		{
+			"provider": "jsdelivr",
+			"library": "owl.carousel@2.3.4",
+			"destination": "wwwroot/lib/owl.carousel/"
+		},
+		{
+			"provider": "jsdelivr",
+			"library": "magnific-popup@1.1.0",
+			"destination": "wwwroot/lib/magnific-popup/"
+		},
+		{
+			"provider": "cdnjs",
+			"library": "air-datepicker@2.2.3",
+			"destination": "wwwroot/lib/air-datepicker/"
+		},
+		{
+			"provider": "cdnjs",
+			"library": "jquery-cookie@1.4.1",
+			"destination": "wwwroot/lib/jquery-cookie/"
+		},
+		{
+			"provider": "cdnjs",
+			"library": "jquery.appear@0.4.1",
+			"destination": "wwwroot/lib/jquery.appear/"
+		},
+		{
+			"provider": "cdnjs",
+			"library": "jquery-validate@1.19.5",
+			"destination": "wwwroot/lib/jquery-validate/"
+		}
+	]
+}

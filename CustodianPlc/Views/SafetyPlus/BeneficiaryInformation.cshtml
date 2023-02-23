@@ -1,0 +1,288 @@
+﻿@using CustodianPlc.Models
+@model PersonalInformationViewModel
+@{
+  Layout = "_SaftyPlus";
+}
+<div class="stepwizard col-md-7 formtop-width" >
+      <div class="stepwizard-row setup-panel">
+        <div class="stepwizard-step">
+          <a class="btn btn-default disable btn-circle" href="#step-1" type="button">1</a>
+          <p>Personal Information</p>
+        </div>
+        <div class="stepwizard-step">
+          <a  class="btn btn-primary disable btn-circle" href="#step-2" type="button" disabled>2</a>
+          <p>Beneficiary Details</p>
+        </div>
+        <div class="stepwizard-step">
+          <a class="btn btn-default disable btn-circle" href="#step-3" type="button">3</a>
+          <p>Quote Summary</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7 form-sha" style="">
+        <form
+          id="personal-accident-form"
+          role="form"
+          action="https://custodianplc.com.ng/safety-plus-plan"
+          enctype="multipart/form-data"
+          method="post"
+        >
+          <div class="row setup-content" id="step-2">
+            <div class="col-md-12">
+  <h3 class="text-center fontn">Beneficiary Details</h3>
+  <div class="smart-forms">
+    <div class="frm-row">
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="fullname" class="field-label">Insurance start date</label>
+          <label class="field">
+            
+				<input
+					type="text"
+					name="start_date"
+					id="start_date"
+					class="gui-input datepicker-here"
+					data-language="en"
+					data-date-format="yyyy-mm-dd"
+					readonly="true"
+					value=""
+					placeholder="yyyy-mm-dd"
+					required
+				>
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="state" class="field-label">Policy Period</label>
+          <label class="field select">
+            <select name="policy_period" id="policy_period" required>
+              <option value="Annually">Annually</option> 
+            </select>
+            <i class="arrow double"></i>                    
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="state" class="field-label">Number of Units </label>
+          <label class="field select">
+            <select name="units" id="units" required>
+              <option value=""><i>Select...</i></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+            <i class="arrow double"></i>                    
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <div class="section">
+            <label for="budget" class="field-label">Premium</label>
+            <label class="field">
+              <input
+                type="text"
+                id="showcase-premium"
+                class="gui-input"
+                readonly
+                placeholder="NGN 1,000.00"
+                style="font-weight: 1000; background-color: #a50505; color: #ffffff; font-size: 18px;"
+                required
+              >
+              </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="budget" class="field-label">Identification Type</label>
+            <label class="field select">
+              <select id="identification_type" name="identification_type" required="required">
+                <option value="">choose ID</option>
+                <option value="Voter-card">Voters card</option>
+                <option value="Drivers-license">Driver's license</option>
+                <option value="International-passport">International passport</option>
+                <option value="National-ID">National ID</option>
+              </select>
+              <i class="arrow double"></i>                    
+            </label>  
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="identification_number" class="field-label">Identification No</label>
+          <label class="field">
+            <input
+              type="text"
+              name="identification_number"
+              id="identification_number"
+              value=""
+              class="gui-input"
+              placeholder="Enter ID No"
+              required="required"
+            >
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="fullname" class="field-label">Company Name</label>
+          <label class="field">
+            <input
+              type="text"
+              name="company_name"
+              id="company_name"
+              value=""
+              class="gui-input"
+              placeholder="Enter Company name"
+              required="required"
+            >
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="company_address" class="field-label">Company Address </label>
+          <label class="field">
+            <input
+              type="text"
+              name="company_address"
+              id="company_address"
+              value=""
+              class="gui-input"
+              placeholder="Enter address"
+              required
+            >
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="firstname" class="field-label">Beneficiary Name</label>
+          <label class="field">
+            <input
+              type="text"
+              name="beneficiary_name"
+              id="beneficiary_name"
+              value=""
+              class="gui-input"
+              placeholder="Enter Beneficiary Name"
+              required
+            >
+          </label>
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="date" class="field-label">Beneficiary Date of Birth</label>
+          <label class="field">
+            
+				<input
+					type="text"
+					name="beneficiary_dob"
+					id="beneficiary_dob"
+					class="gui-input datepicker-here"
+					data-language="en"
+					data-date-format="yyyy-mm-dd"
+					data-min-view="days"
+					data-view="years"
+					readonly="true"
+					value=""
+					placeholder="yyyy-mm-dd"
+					required
+				>
+          </label>
+        </div>
+      </div> 
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="gender" class="field-label">Beneficiary Gender</label>
+          <label class="field select">
+            <select id="beneficiary_gender" name="beneficiary_gender" required>
+              <option value="">Select...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <i class="arrow double"></i>                    
+          </label>  
+        </div>
+      </div>
+
+      <div class="colm colm6">
+        <div class="section">
+          <label for="firstname" class="field-label">Beneficiary Relationship</label>
+          <label class="field">
+            <input
+              type="text"
+              name="beneficiary_relationship"
+              id="beneficiary_relationship"
+              value=""
+              class="gui-input"
+              placeholder="Enter Beneficiary Relationship"
+              required
+            >
+          </label>
+        </div>
+      </div>
+
+      <div class="section">
+        <label for="file1" class="field-label"> 
+          Upload means of Identification - 
+          <span class="small-text fine-grey">(ONLY JPG : PNG : PDF - MAXIMUM FILESIZE: 500KB)</span> 
+        </label>
+
+        <label class="field prepend-icon file">
+          <span class="button btn-primary">Choose File</span>
+          <input
+            class="gui-file"
+            name="identification_image_file"
+            id="identification_image_file"
+			
+			onchange="validateFile(this, '#identification_image_text', 512000)"
+            type="file"
+          >
+          <input
+            class="gui-input"
+            id="identification_image_text"
+            placeholder="no file selected"
+            readonly
+            type="text"
+          >
+          <span class="field-icon"><i class="fa fa-upload"></i></span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary prevBtn btn-class pull-left"
+    type="button"
+  >
+    Previous
+  </button>
+
+  <button
+    class="btn btn-primary btn-class pull-right"
+    id="personal-accident-next-second"
+    type="submit"
+  >
+    Next
+  </button>
+</div>          </div>
+
+        </form>
+</div>
