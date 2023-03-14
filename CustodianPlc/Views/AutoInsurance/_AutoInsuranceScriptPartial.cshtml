@@ -1,0 +1,184 @@
+﻿
+<script>
+
+  @*
+  ----------------------------------------------
+  |         For vehicleDetails                 |
+  ----------------------------------------------
+*@
+
+$(function () {
+    $("#auto_second_step").click(function (event) {
+        // Check if all required fields are valid
+        //var isvalid_identification_image_file = validateRequiredField($("#total"));
+        var isvalid_identification_image_file = validateRequiredField($("#vehicle_color"));
+        var isvalid_beneficiary_relationship = validateRequiredField($("#insurance_start_date"));
+        var isvalid_beneficiary_gender = validateRequiredField($("#car_body_type"));
+        var isvalid_beneficiary_dob = validateRequiredField($("#year_of_make"));
+        var isvalid_beneficiary_name = validateRequiredField($("#engine_number"));
+        var isvalid_company_address = validateRequiredField($("#chassis_no"));
+        var isvalid_company_name = validateRequiredField($("#registration_number"));
+        //var isvalid_identification_number = validateRequiredField($("#mode_of_vehicle"));
+        var isvalid_identification_type = validateRequiredField($("#vehicle_make"));
+        var isvalid_showcase_premium = validateRequiredField($("#payment_option"));
+        var isvalid_units = validateRequiredField($("#vehicle_value"));
+        var isvalid_policy_period = validateRequiredField($("#Vehicle_Category"));
+        var isvalid_start_date = validateRequiredField($("#type_of_cover"));
+
+        // If all required fields are valid, proceed to next step
+        if (isvalid_beneficiary_dob && isvalid_identification_image_file && isvalid_beneficiary_relationship &&
+            isvalid_beneficiary_gender && isvalid_beneficiary_name && isvalid_company_address &&
+            isvalid_company_address && isvalid_company_name /*&& isvalid_identification_number*/ &&
+            isvalid_identification_type && isvalid_showcase_premium && isvalid_units &&
+            isvalid_policy_period && isvalid_start_date) {
+            // Hide current step and show next step
+            $('#step-2').hide();
+            $('#step-3').show();
+
+            $('.stepwizard-2').removeClass('btn-primary').addClass('btn-default');
+            $('.stepwizard-3').removeClass('btn-default').addClass('btn-primary');
+            // Update preview data
+            $("#pre_client_name").text($("#title").val() + " " + $("input[name=surname]").val() + " " + $("#firstname").val());
+            $("#pre_products").text("Vehicle_Category");
+            $("#summary_category").text($("#AutoInsurance").val());
+            $("#pre_payment_option").text($("#payment_option").val());
+            $("#pre_insurance_start_date").text($("#insurance_start_date").val());
+            $("#pre_vehicle_value").text($("#vehicle_value").val());
+            $("#pre_sum_assured").text($('#total').val());
+        }
+    });
+});
+
+  $(document).ready(function() {
+  // Define the options for each type of cover
+  var optionsByCoverType = {
+    'Third Party': [
+      { value: 'Private', text: 'Private' },
+      { value: 'Commercial', text: 'Commercial (Own Goods/Staff Bus)' },
+      { value: 'Commercial (Truck)', text: 'Commercial (Truck/General Cartage)' }
+    ],
+    'Third Party Fire and Theft': [
+      { value: 'Private', text: 'Private' },
+      { value: 'Commercial', text: 'Commercial' }
+    ],
+    'Comprehensive': [
+      { value: 'Private', text: 'Private' },
+      { value: 'Commercial', text: 'Commercial' }
+    ]
+  };
+
+  // Define a function to populate the options of the Vehicle_Category select element
+  function populateVehicleCategoryOptions(options) {
+  var vehicleCategorySelect = $('#Vehicle_Category');
+  vehicleCategorySelect.empty(); // Remove existing options
+  vehicleCategorySelect.append($('<option>', {
+    value: '',
+    text: 'Select One'
+  }));
+  $.each(options, function(index, option) {
+    vehicleCategorySelect.append($('<option>', {
+      value: option.value,
+      text: option.text
+    }));
+  });
+}
+
+  // Populate initial options for Vehicle Category select element
+  populateVehicleCategoryOptions(optionsByCoverType['Third Party']);
+
+  // Update options for Vehicle Category select element when Type of Cover changes
+  $('#type_of_cover').on('change', function() {
+    var selectedCoverType = $(this).val();
+    populateVehicleCategoryOptions(optionsByCoverType[selectedCoverType]);
+  });
+
+  // Update options for Payment Option select element when Type of Cover changes
+  function updatePaymentOptionOptions(selectedCoverType) {
+    var paymentOptionSelect = $('#payment_option');
+    paymentOptionSelect.empty(); // Remove existing options
+    if (selectedCoverType === 'Comprehensive') {
+      paymentOptionSelect.append($('<option>', {
+        value: 'Annually',
+        text: 'Annually'
+      }));
+      paymentOptionSelect.append($('<option>', {
+        value: 'Bi-Annually',
+        text: 'Bi-Annually'
+      }));
+      paymentOptionSelect.append($('<option>', {
+        value: 'Quarterly',
+        text: 'Quarterly'
+      }));
+    } else {
+      paymentOptionSelect.append($('<option>', {
+        value: 'Annually',
+        text: 'Annually'
+      }));
+    }
+  }
+
+  // Add an event listener to the type_of_cover select element to update the options of the Vehicle_Category select element when its value changes
+  $('#type_of_cover').on('change', function() {
+    var selectedCoverType = $(this).val();
+    populateVehicleCategoryOptions(optionsByCoverType[selectedCoverType]);
+    updatePaymentOptionOptions(selectedCoverType);
+  });
+});
+
+
+$(document).ready(function() {
+  // Disable the "mode_of_vehicle" select element on document load
+  $("#mode_of_vehicle").prop("disabled", true);
+
+  // Enable the "mode_of_vehicle" select element when a vehicle_make is selected
+  $("#vehicle_make").change(function() {
+    if ($(this).val() !== "") {
+      $("#mode_of_vehicle").prop("disabled", false);
+    } else {
+      $("#mode_of_vehicle").prop("disabled", true);
+    }
+  });
+});
+
+// hide the buy_extension_section on load
+  document.getElementById('buy_extension_section').style.display = 'none';
+ 
+  // add an event listener to the cover_type select element
+  document.getElementById('type_of_cover').addEventListener('change', function() {
+    // if the selected value is Comprehensive, show the buy_extension_section
+    if (this.value === 'Comprehensive') {
+      document.getElementById('buy_extension_section').style.display = 'block';
+    } else {
+      // otherwise, hide it
+      document.getElementById('buy_extension_section').style.display = 'none';
+    }
+  });
+
+  function toggle() {
+  var extensionsList = document.getElementById("extentions-list");
+  if (document.getElementById("group_checkbox").checked) {
+    extensionsList.style.display = "block";
+  } else {
+    extensionsList.style.display = "none";
+  }
+}
+
+$(document).ready(function() {
+    $('#units').change(function() {
+        var unit = $('#units').val();
+        $.ajax({
+            url: '/Sales/Safety-Plus-Plan/CalculatePremium?unit=' + unit,
+            type: 'GET',
+            success: function(result) {
+                $('#showcase-premium').val('NGN ' + result.premium.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                $('#premium').val(result.premium.toFixed(2));
+            },
+            error: function(xhr) {
+                $('#showcase-premium').val('');
+               //alert(xhr.responseText);
+            }
+        });
+    });
+});
+
+</script>

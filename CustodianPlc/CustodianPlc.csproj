@@ -7,23 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\css\vendor\node_modules\sweetalert2\dist\sweetalert2.min.css" />
+    <Content Include="wwwroot\vendor\node_modules\sweetalert2\dist\sweetalert2.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\img\core\" />
+    <None Include="wwwroot\vendor\node_modules\sweetalert2\dist\sweetalert2.min.js" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\SafetyPlus\PersonalInformation.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustodianProduct.Application\CustodianProduct.Application.csproj" />
+    <ProjectReference Include="..\CustodianProduct.Infrastructure\CustodianProduct.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
