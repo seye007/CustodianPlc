@@ -1,27 +1,17 @@
-﻿@using CustodianPlc.Models
-@model PersonalInformationViewModel
-<form role="form"
-											id="myForm"
-											asp-action="PersonalInformation"
-											method="post"
-											class="smart-forms"
-											enctype="multipart/form-data">
-									<div class="row setup-content pady" id="step-1">
-<div class="col-md-12">
-  <h3 class="text-center fontn">Personal Information</h3>
-  <div class="smart-forms">
+﻿@model PersonalVm
+<div class="row setup-content" id="step-1">
+                        <div class="col-md-12">
+                            <h3 class="text-center fontn">Personal Information</h3>
+
+                           <div class="smart-forms">
     <div class="frm-row">
 
       <div class="colm colm4">
         <div class="section">
           <label for="title" class="field-label">Title</label>
           <label class="field select">
-            <select
-              id="title"
-              name="Title"
-              required
-            >
-              <option value=@Model?.Title >Select Title</option>
+            <select id="title" name="Title" asp-for="Title">
+              <option selected value="">Title</option>
               <option value="Miss">Miss</option>
               <option value="Master">Master</option>
               <option value="Mr">Mr</option>
@@ -33,163 +23,140 @@
               <option value="Pastor">Pastor</option>
               <option value="Rev.">Rev.</option>
             </select>
-            <i class="arrow double"></i> 
-            <span asp-validation-for="Title" style="display: block"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="colm colm4">
-        <div class="section">
-          <label for="surname" class="field-label">Surname</label>
-            <label class="field">
-              <input
-                type="text"
-                name="Surname"
-                id="surname"
-                class="gui-input"
-                value="@Model?.SurName"
-                placeholder="Enter surname"
-                required
-              >
-            <span asp-validation-for="SurName" style="display: block"></span>
-            </label>
-        </div><!-- end section -->
-      </div>
-
-      <div class="colm colm4">
-        <div class="section">
-          <label for="first_name" class="field-label">First Name</label>
-            <label class="field">
-              <input
-                type="text"
-                name="FirstName"
-                value="@Model?.FirstName"
-                id="first_name"
-                class="gui-input"
-                placeholder="Enter First Name"
-                required
-              >
-            <span asp-validation-for="FirstName" style="display: block"></span>
-            </label>
-        </div>
-      </div>
-
-      <div class="colm colm4">
-        <div class="section">
-          <label for="email" class="field-label">Email Address</label>
-            <label class="field">
-              <input
-                type="email"
-                name="Email"
-                value="@Model?.Email"
-                id="email"
-                class="gui-input"
-                placeholder="Enter your email"
-                required
-              >
-            <span asp-validation-for="Email" style="display: block"></span>
-            </label>
-        </div>
-      </div>
-
-      <div class="colm colm4">
-        <div class="section">
-          <label for="phone_number" class="field-label">Mobile Number</label>
-          <label class="field">
-            <input
-              type="tel"
-              pattern=".{11,}"
-              name="PhoneNumber"
-              value="@Model?.PhoneNumber"
-              title="11 characters minimum"
-              id="phone_number"
-              class="gui-input phone_mask"
-              placeholder="Enter Phone number"
-              required
-            >
-            <span asp-validation-for="PhoneNumber" style="display: block"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="colm colm4">
-        <div class="section">
-          <label for="date_of_birth" class="field-label">Date of birth</label>
-          <label class="field">
-            
-				<input
-					type="text"
-					name="DateOfBirth"
-					id="date_of_birth"
-					class="gui-input datepicker-here"
-					data-language="en"
-					data-date-format="yyyy-mm-dd"
-					data-min-view="days"
-					data-view="years"
-					readonly="true"
-					value="@Model?.DateOfBirth"
-					placeholder="yyyy-mm-dd"
-					required
-				>
-            <span asp-validation-for="DateOfBirth" style="display: block"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="colm colm4"> 
-        <div class="section">
-          <label for="gender" class="field-label">Gender</label>
-            <label class="field select">
-              <select
-                id="gender"
-                name="Gender"
-                required
-              >
-                <option selected value=@Model?.Gender>Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              
-            <span asp-validation-for="Gender" style="display: block"></span>
-              <i class="arrow double"></i>                    
+             <span  class="title_val error_meesage" asp-validation-for="Title"></span>
+            <i class="arrow double"></i>                    
           </label>  
         </div>
       </div>
 
       <div class="colm colm4">
         <div class="section">
-          <label for="occupation" class="field-label">Occupation</label>
-          <label class="field">
-            <input type="text"
-              name="Occupation"
-              value="@Model?.Occupation"
-              id="occupation"
+          <label for="fullname" class="field-label">Surname</label>
+          <label class="field" asp-for="Surname" >
+            <input
+              type="text"
+              name="Surname"
+              asp-for="Surname"
+              id="surname"
               class="gui-input"
-              placeholder="Enter Occupation"
-              required
+              placeholder="Surname"
             >
-            
-            <span asp-validation-for="Occupation" style="display: block"></span>
           </label>
+          <span class="surname_val error_meesage text-danger" asp-validation-for="Surname"></span>
+        </div>
+      </div>
+
+      <div class="colm colm4">
+        <div class="section">
+          <label for="firstname" class="field-label" >First Name</label>
+          <label class="field">
+            <input
+              type="text"
+              name="FirstName"
+              id="firstname"
+              asp-for="FirstName"
+              class="gui-input"
+              placeholder="firstname"
+            >
+          </label>
+          <span  class="firstname_val error_meesage text-danger" asp-validation-for="FirstName"></span>
+        </div>
+      </div>
+     
+      <div class="colm colm4">
+        <div class="section">
+          <label for="date" class="field-label" >Date of Birth</label>
+          <label class="field" asp-for="DateOfBirth">
+            <input
+            type="text"
+            name="DateOfBirth"
+            value=""
+            id="date_of_birth"
+            asp-for="DateOfBirth"
+            class="gui-input datepicker-here"
+            data-language="en"
+            data-date-format="yyyy-mm-dd"
+            data-min-view="days"
+            data-view="years"
+            readonly="true"
+            placeholder="yyyy-mm-dd"
+            >
+        <span class="date_of_birth_val error_meesage text-danger" asp-validation-for="DateOfBirth"></span>
+          </label>
+        </div>
+      </div>
+                       
+      <div class="colm colm4">
+        <div class="section">
+          <label for="gender" class="field-label">Gender</label>
+          <label class="field select">
+            <select id="gender" name="Gender" asp-for="Gender">
+              <option value="">Select Gender...</option>
+              <option value="Male"> Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <i class="arrow double"></i>                    
+            
+          <span class="gender_val error_meesage text-danger" asp-validation-for="Gender"></span>
+          </label>  
+        </div>
+      </div>
+       
+      <div class="colm colm4">
+        <div class="section">
+          <div class="section">
+            <label for="email" class="field-label">Email</label>
+            <label class="field">
+              <input
+                name="Email"
+                asp-for="Email"
+                value=""
+                id="email"
+                class="gui-input"
+                placeholder="Email"
+              >
+            <span class="email_val error_meesage text-danger" asp-validation-for="Email"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="colm colm4">
+        <div class="section">
+          <label for="phone" class="field-label">Mobile no.</label>
+          <label class="field">
+            <input
+              type="tel"
+              name="TelePhone"
+              value=""
+              asp-for="TelePhone"
+              id="telephone"
+              maxlength="14"
+              class="gui-input phone_mask"
+              placeholder="Enter Mobile No."
+            >
+            <span class="telephone_val error_meesage text-danger" asp-validation-for="TelePhone"></span>
+          </label>
+          
         </div>
       </div>
 
       <div class="colm colm4">
         <div class="section">
           <label for="address" class="field-label">Address</label>
-            <label class="field">
-              <input
-                type="text"
-                name="Address"
-                value="@Model?.Address"
-                id="address"
-                class="gui-input"
-                placeholder="Enter your address"
-                required
-              >
-            <span asp-validation-for="Address" style="display: block"></span>
-            </label>
+          <label class="field">
+            <input
+              type="text"
+              id="address"
+              name="Address"
+              asp-for="Address"
+              value=""
+              class="gui-input"
+              placeholder="address"
+            >
+             <span class="address_val error_meesage text-danger" asp-validation-for="Address"></span>
+          </label>
+         
         </div>
       </div>
 
@@ -197,66 +164,117 @@
         <div class="section">
           <label for="state" class="field-label">State</label>
           <label class="field select">
-            <select
-              name="State"
-              id="state"
-              required
+            <select name="State" id="state" asp-for="State" type="text">
+              <option selected="selected" value="lagos">LAGOS</option>
+
+                  <option value="abuja">ABUJA FCT</option>
+
+                  <option value="abia">ABIA</option>
+
+                  <option value="adamawa">ADAMAWA</option>
+
+                  <option value="akwa_ibom">AKWA IBOM</option>
+
+                  <option value="anambra">ANAMBRA</option>
+
+                  <option value="bauchi">BAUCHI</option>
+
+                  <option value="bayelsa">BAYELSA</option>
+
+                  <option value="benue">BENUE</option>
+
+                  <option value="borno">BORNO</option>
+
+                  <option value="rivers">CROSS RIVERS</option>
+
+                  <option value="delta">DELTA</option>
+
+                  <option value="ebonyi">EBONYI</option>
+
+                  <option value="edo">EDO</option>
+
+                  <option value="ekiti">EKITI</option>
+
+                  <option value="enugu">ENUGU</option>
+
+                  <option value="gombe">GOMBE</option>
+
+                  <option value="imo">IMO</option>
+
+                  <option value="jigawa">JIGAWA</option>
+
+                  <option value="kaduna">KADUNA</option>
+
+                  <option value="kano">KANO</option>
+
+                  <option value="kastina">KATSINA</option>
+
+                  <option value="kebbi">KEBBI</option>
+
+                  <option value="kogi">KOGI</option>
+
+                  <option value="kwara">KWARA</option>
+
+                  <option value="nassarawa">NASSARAWA</option>
+
+                  <option value="niger">NIGER</option>
+
+                  <option value="ogun">OGUN</option>
+
+                  <option value="ondo">ONDO</option>
+
+                  <option value="osun">OSUN</option>
+
+                  <option value="oyo">OYO</option>
+
+                  <option value="plateau">PLATEAU</option>
+
+                  <option value="river">RIVERS</option>
+
+                  <option value="sokoto">SOKOTO</option>
+
+                  <option value="taraba">TARABA</option>
+
+                  <option value="yobe">YOBE</option>
+
+                  <option value="zamfara">ZAMFARA</option>      
+                </select>
+            <i class="arrow double"></i>       
+          <span  class="state_val error_meesage text-danger" asp-validation-for="State"></span>             
+          </label>
+        </div>
+      </div>
+   
+      <div class="colm colm4">
+        <div class="section">
+          <label for="occupation" class="field-label">Occupation</label>
+          <label class="field">
+            <input
+              type="text"
+              name="Occupation"
+              value=""
+              id="occupation"
+              asp-for="Occupation"
+              class="gui-input"
+              placeholder="Enter your occupation"
             >
-              <option selected value="@Model?.State">Select</option>
-              <option value="lagos">LAGOS</option>
-              <option value="abuja">ABUJA FCT</option>
-              <option value="abia">ABIA</option>
-              <option value="adamawa">ADAMAWA</option>
-              <option value="akwa_ibom">AKWA IBOM</option>
-              <option value="anambra">ANAMBRA</option>
-              <option value="bauchi">BAUCHI</option>
-              <option value="bayelsa">BAYELSA</option>
-              <option value="benue">BENUE</option>
-              <option value="borno">BORNO</option>
-              <option value="rivers">CROSS RIVERS</option>
-              <option value="delta">DELTA</option>
-              <option value="ebonyi">EBONYI</option>
-              <option value="edo">EDO</option>
-              <option value="ekiti">EKITI</option>
-              <option value="enugu">ENUGU</option>
-              <option value="gombe">GOMBE</option>
-              <option value="imo">IMO</option>
-              <option value="jigawa">JIGAWA</option>
-              <option value="kaduna">KADUNA</option>
-              <option value="kano">KANO</option>
-              <option value="kastina">KATSINA</option>
-              <option value="kebbi">KEBBI</option>
-              <option value="kogi">KOGI</option>
-              <option value="kwara">KWARA</option>
-              <option value="nassarawa">NASSARAWA</option>
-              <option value="niger">NIGER</option>
-              <option value="ogun">OGUN</option>
-              <option value="ondo">ONDO</option>
-              <option value="osun">OSUN</option>
-              <option value="oyo">OYO</option>
-              <option value="plateau">PLATEAU</option>
-              <option value="river">RIVERS</option>
-              <option value="sokoto">SOKOTO</option>
-              <option value="taraba">TARABA</option>
-              <option value="yobe">YOBE</option>
-              <option value="zamfara">ZAMFARA</option>
-            </select>
-            <i class="arrow double"></i>  
-            
-            <span asp-validation-for="State" style="display: block"></span>
-          </label>  
+            <span  class="occupation_val error_meesage text-danger" asp-validation-for="Occupation"></span>
+          </label>
+          
         </div>
       </div>
 
-      <div class="colm colm4">
+ 
+ <div class="colm colm4">
         <div class="section">
           <label for="identification_type" class="field-label">Identification Type</label>
           <label class="field select">
-            <select class="form-control" required="required" id="identification_type"  name="IdentificationType"><option value="@Model?.IdentificationType" selected="selected">Select</option><option value="Driver&#039;s Licence">Driver&#039;s Licence</option><option value="International Passport">International Passport</option><option value="National ID. Card">National ID. Card</option></select>
-            <i class="arrow double"></i>   
-            <span asp-validation-for="IdentificationType" style="display: block"></span>
-          </label>  
+            <select class="form-control" id="identification_type" name="IdentificationType" asp-for="IdentificationType"><option value="" selected="selected">Select One</option><option value="Driver&#039;s Licence">Driver&#039;s Licence</option><option value="International Passport">International Passport</option><option value="National ID. Card">National ID. Card</option></select>
+            <i class="arrow double"></i>      
+             <span  class="identification_type_val error_meesage text-danger" asp-validation-for="IdentificationType"></span>
         </div>    
+          </label>
+         
       </div>
 
       <div class="colm colm4">
@@ -265,54 +283,54 @@
             <label class="field">
               <input
                 type="text"
-                name="IdentificationNumber"
-                value="@Model?.IdentificationNumber"
+                name="IdentificationNo"
+                value=""
+                asp-for="IdentificationNo"
                 id="identification_no"
                 class="gui-input"
                 placeholder="Enter identification number"
-                required="required"
               >
-            <span asp-validation-for="IdentificationNumber" style="display: block"></span>
+               <span  class="identification_no_val error_meesage text-danger" asp-validation-for="IdentificationNo"></span>
             </label>
+            
+         
         </div>
       </div>
 
-		<div class="colm colm12">
-			<div class="section">
-				<label for="file1" class="field-label"> 
-				Upload means of Identification - 
-				<span class="small-text fine-grey">(ONLY JPG : PNG : PDF - 500KB MAX)</span> 
-				</label>
-				<label class="field prepend-icon file">
-				<span class="button btn-primary">Choose File</span>
-				<input
-					class="gui-file"
-					id="idUploaderFile"
-					name="MeansOfIdentification"
-					onchange="validateFile(this, '#idUploaderFileText', 512000)"
-					type="file"
-					required="required"
-          value="@Model?.MeansOfIdentification"
-				>
-				<input class="gui-input"  id="idUploaderFileText" placeholder="no file selected" readonly="" type="text">
-				<span class="field-icon"><i class="fa fa-upload"></i></span>
-        
-            <span asp-validation-for="MeansOfIdentification" style="display: block"></span>
-				</label>
-			</div>
-		</div>
+ <div class="colm colm12">
+<div class="section">
+<label for="file1" class="field-label">
+Upload means of Identification -
+<span class="small-text fine-grey">(ONLY JPG : PNG : PDF - 500KB MAX)</span>
+</label>
+<label class="field prepend-icon file">
+<span class="button btn-primary">Choose File</span>
+<input
+class="gui-file"
+name="MeansOfIdentification"
+ asp-for="MeansOfIdentification"
+id="idUploaderFile"
+onchange="validateFile(this, '#idUploaderFileText', 512000)"
+type="file"
+>
+<input class="gui-input" id="idUploaderFileText" placeholder="no file selected" readonly="" type="text">
+<span class="idUploaderFile_val error_meesage text-danger" asp-validation-for="MeansOfIdentification"></span>
+<span class="field-icon"><i class="fa fa-upload"></i></span>
+</label>
+</div>
+ </div>
     </div>
   </div>
-</div>
-<div class="col-md-12 pady" style="margin-bottom: 15px">
-										<button
-											class="btn btn-primary nextBtn btn-class pull-right validateForm"
-											id="personalNext"
-											type="submit"
-											asp-action="PersonalInformation"
+
+                            
+                            <div
+											id="product_first_step" class="btn btn-primary btn-class pull-right" 
+                      onclick="personalInformationValidation()"
 										>
 											Next
-										</button>
-									</div>  
-									</div>
-									</form>
+										</div>
+                        </div>
+                    </div>
+
+
+  @await Html.PartialAsync("_PersonalInfoValidationScriptPartial")

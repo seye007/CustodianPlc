@@ -1,0 +1,131 @@
+﻿ <script>
+        function validateRequiredField($input,$error) {
+          if (!$input.valid()) {
+            Swal.fire({
+              icon: 'error',
+              confirmButtonText: 'OK',
+              text: $error.text()
+            });
+            return false;
+          }
+          return true;
+        }
+
+
+      $(function() {
+          $("#product_second_step_prev").click(function(event) {
+              $('#step-2').hide();
+              $('#step-1').show();
+              $('.stepwizard-1').removeClass('btn-default').addClass('btn-primary');
+              $('.stepwizard-2').removeClass('btn-primary').addClass('btn-default');
+          });
+      });
+
+      $(function() {
+          $("#product_third_step_prev").click(function(event) {
+              $('#step-3').hide();
+              $('#step-2').show();
+              $('.stepwizard-2').removeClass('btn-default').addClass('btn-primary');
+              $('.stepwizard-3').removeClass('btn-primary').addClass('btn-default');
+          });
+      });
+
+
+        $(document).on('ready', function() {
+      $('.phone_mask').mask("0xxxxxxxxxx", {'translation': {
+      0: {pattern: /[0]/},
+      x: {pattern: /[0-9]/},
+      }, placeholder: '0xxxxxxxxxx'});
+      });
+
+/*---------------------------------------------------------------
+| FILE VALIDATION METHOD:
+|----------------------------------------------------------------
+| Validates if the file is of the right format and size.
+| If yes: Preview is shown.
+| If no: Alert goes off telling the user the input error.
+|--------------------------------------------------------------*/
+
+
+        var validateFile = function(fileDOM, fileTextDOM, fileSize=2097152) {
+        // This is where the text display input is filled.
+        // with the value of the object returned.
+        var url = fileDOM.value;
+                var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if (fileDOM.files && fileDOM.files[0] && fileDOM.files[0].size <= fileSize) {
+        if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "pdf") {
+        $(fileTextDOM).val(fileDOM.value);
+        var type = '<img class="img-thumbnail" src="" id="salert_img_preview"  style="max-height:300px;max-width:400px;" />';
+
+        if(ext == "pdf") {
+        type = '<iframe src="" id="salert_img_preview" width="400px" height="450px"></iframe>';
+        }
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#salert_img_preview').attr('src', e.target.result);
+        // console.log(e.target.result);
+        }
+        reader.readAsDataURL(fileDOM.files[0]);
+
+        // Show the preview using sweetalert!
+        swal({
+        title: 'Preview',
+        html: type
+        });
+        } else {
+        $(fileTextDOM).val('');
+        $(fileDOM).val('');
+        swal({
+        type: 'error',
+        title: 'File format not supported',
+        html: '<hr><strong>You can only upload image and pdf files</strong>'
+        });
+        }
+        } else {
+        $(fileTextDOM).val('');
+        $(fileDOM).val('');
+        swal({
+        type: 'error',
+        title: 'Upload size limit exceeded',
+        html: '<hr><strong>Upload size limit is ' + getPrettyFileSize(fileSize) + '</strong>'
+        });
+        }
+        }
+        // DONE WITH FILE VALIDATION
+
+        var getPrettyFileSize = function(fileSize, key=0) {
+        var postfix = ['B','KB', 'MB', 'GB', 'TB'];
+        if (fileSize < 1024) {
+        return fileSize + ' ' + postfix[key];
+        } else {
+        key++;
+        fileSize = (fileSize / 1024);
+        return getPrettyFileSize(fileSize, key);
+        }
+        }
+
+/*-------------------------------------------------------------
+| DO THE DATE VALIDATIONS HERE.
+|------------------------------------------------------------*/
+
+        $(document).ready(function() {
+        $('.datepicker-here').datepicker({
+        onSelect: function(formattedDate, date, inst) {
+        $(inst.el).trigger('change');
+        }
+        });
+
+        $('#date_of_birth, #travellers_date_of_birth, #beneficiary_dob').datepicker({
+        maxDate: new Date()
+        });
+
+        $('#departure_date, #return_date, #insurance_start_date, #start_date').datepicker({
+        minDate: new Date()
+        });
+        });
+
+/*-------------------------------------------------------------
+| END THE DATE VALIDATIONS HERE.
+|------------------------------------------------------------*/
+</script>
